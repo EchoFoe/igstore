@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Ваша корзина товаров{% endblock %}
+
+{% block content %}
+{% if cart %}
+<!--================Cart detail area =================-->
+<section class="cart_area">
+    <div class="container">
+        <div class="cart_inner">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Товар</th>
+                            <th scope="col">Цена</th>
+                            <th scope="col">Количество</th>
+                            <th scope="col">Сумма</th>
+                        </tr>
+                    </thead>
+                <tbody>
+                {% for item in cart %}
+                    {% with product=item.product %}
+                    <tr>
+                        <th scope="row">
+                            <a href="{% url 'cart:cart_remove' product.id %}"><img src="{% static 'img/close-icon.png' %}" alt=""></a>
+                        </th>
+                        <td>
+                            <div class="media">
+                                <div class="d-flex">
+                                    <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" alt="">
+                                </div>
+                                <div class="media-body">
+                                    <p>{{ product.name }}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <h5>{{ product.price }}</h5>
+                        </td>
+                        <td>
+                            <h5>{{ item.quantity }}</h5>
+                        </td>
+{#                        <td>#}
+{#                            <div class="product_count">#}
+{#                                <form action="{% url 'cart:cart_add' product.id %}" method="post">{% csrf_token %}#}
+{#                                <input type="text" name="{{ item.quantity }}" id="sst" maxlength="12" value="1" title="Quantity:"#}
+{#                                class="input-text qty">#}
+{#                                <button onclick="var result = document.getElementById('sst'); var sst = result.value;#}
+{#                                if( !isNaN( sst )) result.value++;return false;"#}
+{#                                class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>#}
+{#                                <button onclick="var result = document.getElementById('sst'); var sst = result.value;#}
+{#                                if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"#}
+{#                                class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>#}
+{#                                    {{ item.update_quantity_form.update }}#}
+{#                                                        <input type="submit" value="Обновить">#}
+{#                                </form>#}
+{#                            </div>#}
+{#                        </td>#}
+{#                        <td>#}
+{#                            <div class="product_count">#}
+{#                                <form action="{% url 'cart:cart_add' product.id %}" method="post">{% csrf_token %}#}
+{#                                    <input type="text" name="{{ item.update_quantity_form.quantity }}" value="" id="sst" maxlength="12" value="1" title="Quantity:"#}
+{#                                    class="input-text qty">#}
+{#                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"#}
+{#                                    class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>#}
+{#                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"#}
+{#                                    class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>#}
+{#                                </form>#}
+{#                            </div>#}
+{#                        </td>#}
+                        <td>
+                            <h5>{{ item.total_price }} ₽</h5>
+                        </td>
+                    </tr>
+                    {% endwith %}
+                {% endfor %}
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td><h5>Итого:</h5></td>
+                        <td><h5>{{ cart.get_total_price }} рублей</h5></td>
+                    </tr>
+{#                    <tr class="shipping_area">#}
+{#                        <td class="d-none d-md-block"></td>#}
+{#                        <td></td>#}
+{#                        <td></td>#}
+{#                        <td>#}
+{#                            <div class="shipping_box"><a class="gray_btn" href="#">Обновить корзину</a></div>#}
+{#                        </td>#}
+{#                    </tr>#}
+                    <tr class="out_button_area">
+                        <td class="d-none-l"></td>
+                        <td class=""></td>
+                        <td></td>
+                    <td>
+                        <div class="checkout_btn_inner d-flex align-items-center">
+                            <a class="gray_btn" href="{% url 'products:product_list' %}">Продолжить покупки</a>
+                            <a class="primary-btn ml-2" href="{% url 'orders:order_create' %}">К заказу</a>
+                        </div>
+                    </td>
+                    </tr>
+                </tbody>
+                </table>
+              </div>
+          </div>
+    </div>
+</section>
+    {% else %}
+    <!-- ================ Empty cart banner area ================= -->
+    <section class="blog-banner-area" id="category">
+		<div class="container h-100">
+			<div class="blog-banner">
+				<div class="text-center">
+					<h1>Ваша корзина покупок пуста</h1>
+					<nav aria-label="breadcrumb" class="banner-breadcrumb">
+                        <ol class="breadcrumb">
+                          <li class="breadcrumb-item"><a href="{% url 'products:product_list' %}">Назад к покупкам</a></li>
+                          <li class="breadcrumb-item active" aria-current="page">Корзина покупок</li>
+                        </ol>
+                    </nav>
+				</div>
+			</div>
+        </div>
+	</section>
+    <!-- ================ New products area ================= -->
+    <section class="section-margin calc-60px">
+        <div class="container">
+            <div class="section-intro pb-60px">
+                <p>Обновление ассортимента каждый день!</p>
+                <h2>Новые <span class="section-intro__style">поступления</span></h2>
+            </div>
+            <div class="owl-carousel owl-theme" id="newProductsCarousel">
+                {% for n in new_products %}
+                    <div class="card text-center card-product">
+                        <div class="card-product__img">
+                            <a href="{{ n.get_absolute_url }}"><img class="img-fluid"
+                                 src="{% if n.image %}{{ n.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" alt="">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <p>{{ n.category }}/{{ n.special_category }}</p>
+                            <h4 class="card-product__title"><a href="{{ n.get_absolute_url }}">{{ n.name|truncatechars:22 }}</a></h4>
+                            <p class="card-product__price">{{ n.price }} ₽</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endif %}
+{% endblock %}

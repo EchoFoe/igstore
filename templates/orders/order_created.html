@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Заказ успешно составлен! {% endblock title %}
+
+{% block content %}
+<!--================Order Details Area =================-->
+<section class="order_details section-margin--small">
+    <div class="container">
+        <p class="text-center billing-alert">Отлично! Заказ успешно составлен и он формируется. Номер Вашего заказа <strong>{{ order.id }}</strong></p>
+        <p class="text-center billing-alert">Скоро с Вами свяжется наш оператор</p>
+        <div class="row mb-5">
+            <div class="col-md-6 col-xl-4 mb-4 mb-xl-0">
+                <div class="confirmation-card">
+                    <h3 class="billing-title">Информация о Вашем заказе</h3>
+                    <table class="order-rable">
+                        <tr>
+                            <td>Номер заказа</td>
+                            <td>: {{ order.id }}</td>
+                        </tr>
+                        <tr>
+                            <td>Дата</td>
+                            <td>: {{ order.created }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4 mb-4 mb-xl-0">
+                <div class="confirmation-card">
+                    <h3 class="billing-title">Адрес</h3>
+                    <table class="order-rable">
+                        <tr>
+                            <td>Город</td>
+                            <td>: {{ order.city }}</td>
+                        </tr>
+                        {% if order.postal_code %}
+                        <tr>
+                            <td>Почт. индекс</td>
+                            <td>: {{ order.postal_code }}</td>
+                        </tr>
+                        {% endif %}
+                        <tr>
+                            <td>Улица/дом/кв</td>
+                            <td>: {{ order.address }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

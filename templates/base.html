@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="zxx">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+    <title>{% block title %}iGadgetStore{% endblock %}</title>
+    <meta name="description" content="igadgetstore project">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Css link -->
+    <link href="{% static 'vendors/bootstrap/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/fontawesome/css/all.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/themify-icons/themify-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/linericon/style.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/owl-carousel/owl.theme.default.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/owl-carousel/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/nice-select/nice-select.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/nouislider/nouislider.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style_1.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+    {% include 'navbar/navbar.html' %}
+        {% block content %}
+        {% endblock content %}
+    {% include 'footer/footer.html' %}
+    <!-- Preloader -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="{% static 'img/logotype3.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Js -->
+    <script src="{% static 'vendors/jquery/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'vendors/bootstrap/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'vendors/skrollr.min.js' %}"></script>
+    <script src="{% static 'vendors/owl-carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'vendors/nice-select/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'vendors/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{% static 'vendors/mail-script.js' %}"></script>
+    <script src="{% static 'vendors/jquery.maskedinput.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+
+</body>
+</html>

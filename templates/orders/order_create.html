@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Ваш заказ{% endblock %}
+
+{% block content %}
+<!--================Order area =================-->
+<section class="checkout_area section-margin--small">
+    <div class="container">
+        <div class="billing_details">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h3>Заполните формы для оформления заказа:</h3>
+                    <form action="." class="row contact_form" method="post">{% csrf_token %}
+                        <div class="col-md-6 form-group p_star">
+                            <label for="first_name">Ваше имя <span>*</span></label>
+                            <input required type="text" class="form-control" id="first"
+                                   name="{{ form.first_name.name }}" value="{{ request.POST.name }}"
+                                   placeholder="Иван">
+                        </div>
+                        <div class="col-md-6 form-group p_star">
+                            <label for="last_name">Ваша фамилия <span>*</span></label>
+                            <input required type="text" class="form-control" id="last_name"
+                                   name="{{ form.last_name.name }}" value="{{ request.POST.name }}"
+                                   placeholder="Иванов">
+                        </div>
+                        <div class="col-md-6 form-group p_star">
+                            <label for="order_phone">Ваш номер тел. <span>*</span></label>
+                            <input required type="text" class="form-control" id="order_phone"
+                                   name="{{ form.phone.name }}" value="{{ request.POST.name }}">
+                        </div>
+                        <div class="col-md-6 form-group p_star">
+                            <label for="email">Ваша почта <span>*</span></label>
+                            <input required type="email" class="form-control" id="email"
+                                   name="{{ form.email.name }}" value="{{ request.POST.name }}"
+                                   placeholder="name@example.com">
+                        </div>
+                        <div class="col-md-6 form-group p_star">
+                            <label for="city">Город <span>*</span></label>
+                            <input required type="text" class="form-control" id="city"
+                                   name="{{ form.city.name }}" value="{{ request.POST.name }}"
+                                   placeholder="Москва">
+                        </div>
+                        <div class="col-md-6 form-group p_star">
+                            <label for="postal_code">Почтовый индекс</label>
+                            <input type="text" class="form-control" id="postal_code"
+                                   name="{{ form.postal_code.name }}" value="{{ request.POST.name }}">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="address">Ваш адрес <span>*</span></label>
+                            <input required type="text" class="form-control" id="address"
+                                   name="{{ form.address.name }}" value="{{ request.POST.name }}"
+                                   placeholder="Ул. Степана Разина, д. 24, кв. 179">
+                        </div>
+                        <div class="col-md-12 form-group mb-0">
+                            <div class="creat_account">
+                                <h3>Пожелания к заказу</h3>
+                            </div>
+                            <textarea class="form-control" id="description" rows="1"
+                                      name="{{ form.description.name }}" value="{{ request.POST.name }}"
+                                      placeholder="Здесь вы можете оставить Ваши пожелания к заказу"></textarea>
+                            <br>
+                            <div class="col-md-5 mb-0 ">
+                                <button type="submit" value="OK" name="form"
+                                        class="button button-paypal">Заказать</button>
+                            </div>
+                            <br>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-4">
+                    <div class="order_box">
+                        <h2>Ваш заказ</h2>
+                        <ul class="list">
+                            <li><a href="#"><h4>Товар <span>Всего</span></h4></a></li>
+                            {% for item in cart %}
+                            <li><a href="#">{{ item.product.name|truncatechars:20 }}
+                                <span class="middle">x {{ item.quantity }}</span>
+                                <span class="last">{{ item.total_price }} ₽</span>
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <ul class="list list_2">
+                            <li><a href="#">Итого: <span>{{ cart.get_total_price }} ₽</span></a></li>
+                        </ul>
+                        <div class="payment_item active">
+                            <p>Нажимая кнопку заказать, Вы соглашаетесь с нашими условиями по обработке персональных данных.
+                                После заказа с Вами сразу же свяжется наш сотрудник для уточнения всех позиций в заказе.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

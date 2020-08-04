@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load mptt_tags %}
+{% block title %}igadgetstore{% endblock %}
+
+{% block content %}
+<main class="site-main">
+    <!--================ Banner area =================-->
+    <section class="hero-banner">
+        <div class="container">
+            <div class="row no-gutters align-items-center pt-60px">
+                <div class="col-5 d-none d-sm-block">
+                    <div class="hero-banner__img">
+                        <img class="img-fluid" src="{% static 'img/banner_iphone.png' %}" alt="">
+                    </div>
+                </div>
+                <div class="col-sm-7 col-lg-6 offset-lg-1 pl-4 pl-md-5 pl-lg-0">
+                    <div class="hero-banner__content">
+                        <h4>Магазин электроники</h4>
+                        <h1>Ремонт и продажа смартфонов</h1>
+                        <p>Apple/Samsung/MI/Huawei/Trade-in/Ремонт/Доставка/Аксессуары/</p>
+                        <a class="button button-hero" href="#">Магазин</a>
+                        <a class="button button-hero" href="#">Ремонт</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================ Best sellers area ================= -->
+    <section class="section-margin calc-60px">
+        <div class="container">
+            <div class="section-intro pb-60px">
+                <p>Будь в тренде!</p>
+                <h2>Хит <span class="section-intro__style">продаж</span></h2>
+            </div>
+            <div class="owl-carousel owl-theme" id="bestSellerCarousel">
+                {% for h in hot_sales_products %}
+                    <div class="card text-center card-product">
+                        <div class="card-product__img">
+                            <a href="{{ h.get_absolute_url }}"><img class="img-fluid"
+                                 src="{% if h.image %}{{ h.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" alt="">
+                            </a>
+                            <ul class="card-product__imgOverlay">
+                                <li><a href="{{ h.get_absolute_url }}"><i class="ti-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+{#                            <p>{{ h.category }}</p>#}
+                            <h4 class="card-product__title"><a href="{{ h.get_absolute_url }}">{{ h.name|truncatechars:22 }}</a></h4>
+                            <p class="card-product__price">{{ h.price }} ₽</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!--================Instagram Area =================-->
+    <section class="instagram_area">
+        <div class="container box_1620">
+            <div class="insta_btn">
+                <a class="btn theme_btn" href="https://www.instagram.com/igstore.ru/" target="_blank">Присоединяйтесь к нам в instagram!</a>
+            </div>
+            <div class="instagram_image row m0">
+                {% for i in instagram %}
+                    <a href="https://www.instagram.com/igstore.ru/" target="_blank"><img src="{{ i.image.url }}" alt=""></a>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- ================ New products area ================= -->
+    <section class="section-margin calc-60px">
+        <div class="container">
+            <div class="section-intro pb-60px">
+                <p>Обновление ассортимента каждый день!</p>
+                <h2>Новые <span class="section-intro__style">поступления</span></h2>
+            </div>
+            <div class="owl-carousel owl-theme" id="newProductsCarousel">
+                {% for n in new_products %}
+                    <div class="card text-center card-product">
+                        <div class="card-product__img">
+                            <a href="{{ n.get_absolute_url }}"><img class="img-fluid"
+                                 src="{% if n.image %}{{ n.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" alt="">
+                            </a>
+                        </div>
+                        <div class="card-body">
+{#                            <p>Код товара: {{ n.code }}</p>#}
+                            <h4 class="card-product__title"><a href="{{ n.get_absolute_url }}">{{ n.name|truncatechars:22 }}</a></h4>
+                            <p class="card-product__price">{{ n.price }} ₽</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- ================ Banner_2 area ================= -->
+    <section class="offer" id="parallax-1" data-anchor-target="#parallax-1" data-300-top="background-position: 20px 30px" data-top-bottom="background-position: 0 20px">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-5">
+                    <div class="offer__content text-center">
+                        <h3>Купили устройство?</h3>
+                        <h4>Приобретите к нему аксессуар!</h4>
+                        <p>Здесь Вы найдете огромный выбор аксессуаров к своему устройству</p>
+                        {% recursetree categories %}
+                            <a class="button button--active mt-3 mt-xl-4" href="{{ node.get_absolute_url }}">{{ node.name }}</a>
+                        {% endrecursetree %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================ Reviews area ================= -->
+    <section class="section-margin calc-60px">
+        <div class="container">
+            <div class="section-intro pb-60px">
+            <h2>Отзывы <span class="section-intro__style">клиентов:</span></h2>
+            </div>
+            <div class="owl-carousel owl-theme hero-carousel">
+                {% for r in all_reviews %}
+                    <div class="review_list">
+
+                        <div class="review_item">
+                            <div class="media">
+                                <div class="d-flex">
+                                    <img src="{{ r.image.url }}" alt="">
+                                </div>
+                                <div class="media-body">
+                                    <h4>{{ r.first_name }} {{ r.last_name }}</h4>
+                                </div>
+                            </div>
+                            <p>{{ r.message }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- ================ Subscribe area ================= -->
+    <section class="subscribe-position">
+        <div class="container">
+            <div class="subscribe text-center">
+                <h3 class="subscribe__title">Получайте актуальные новости о поступлении товара </h3>
+                <p>Подпишитесь на рассылку</p>
+                <div id="">
+                    <form action="#" method="post" class="subscribe-form form-inline mt-5 pt-1">{% csrf_token %}
+                        <div class="form-group ml-sm-auto">
+                            <input class="form-control mb-1" required type="email" placeholder="Введите Ваш email" name="{{ form.email.name }}" value="{{ request.POST.name}}" >
+                        <div class="info"></div>
+                        </div>
+                        <button class="button button-subscribe mr-auto mb-1" type="submit">Подписаться!</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

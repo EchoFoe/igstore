@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<!-- ================ Product detail area ================= -->
+<div class="product_image_area">
+    <div class="container">
+        <div class="row s_product_inner">
+            <div class="col-lg-6">
+                <div class="owl-carousel owl-theme s_Product_carousel">
+                    {% if product.productdetail_set.all %}
+                        {% for i in product.productdetail_set.all %}
+                            <div class="single-prd-item">
+                                <img class="img-fluid"
+                                     src="{% if i.image %}{{ i.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" alt="">
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="single-prd-item">
+                            <img class="img-fluid"
+                                 src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" alt="">
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-5 offset-lg-1">
+                <div class="s_product_text">
+                    <h3>{{ product.name }}</h3>
+                    <h2>{{ product.price }} ₽</h2>
+                    <ul class="list">
+                        {% if product.code %}
+                            <li><a class="active"><span>Код товара </span> : {{ product.code }}</a></li>
+                        {% endif %}
+                        {% if product.memory %}
+                            <li><a class="active"><span>Память </span> : {{ product.memory }} Gb</a></li>
+                        {% endif %}
+                        <li><a><span>В наличии</span> : да</a></li>
+                    </ul>
+                    <p>{{ product.description }}</p>
+                    <form action="{% url "cart:cart_add" product.id %}" method="post">{% csrf_token %}
+                        <br>
+                        <button class="button primary-btn" type="submit">В корзину</button>
+                        <div class="product_count" style="visibility: hidden">
+                            <input type="text" name="{{ cart_product_form.quantity.name }}" id="sst" maxlength="12" value="1" title="Quantity:"
+                                   class="input-text qty">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ================ Special products area ================= -->
+<section class="section-margin calc-60px">
+    <div class="container">
+        <div class="section-intro pb-60px">
+            <h2>Товары <span class="section-intro__style">спецпредложения</span></h2>
+        </div>
+        <div class="owl-carousel owl-theme" id="newProductsCarousel">
+            {% for s in special_products %}
+                <div class="card text-center card-product">
+                    <div class="card-product__img">
+                        <a href="{{ s.get_absolute_url }}"><img class="img-fluid"
+                             src="{% if s.image %}{{ s.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" alt="">
+                        </a>
+                        <ul class="card-product__imgOverlay">
+                            <li><button><i class="ti-shopping-cart"></i></button></li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-product__title"><a href="{{ s.get_absolute_url }}">{{ s.name|truncatechars:22 }}</a></h4>
+                        <p class="card-product__price">{{ s.price }} ₽</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

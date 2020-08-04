@@ -1,0 +1,51 @@
+{% load static %}
+{% load mptt_tags %}
+<!--================ Menu navbar area =================-->
+<header class="header_area">
+    <div class="main_menu">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <a class="navbar-brand logo_h" href="{% url 'home:home' %}"><img src="{% static 'img/logotype3.png' %}" alt=""></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+                        <li class="nav-item active"><a class="nav-link" href="{% url 'home:home' %}">Домашняя</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'products:product_list' %}">Каталог</a></li>
+                        <li class="nav-item submenu dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false">Магазин</a>
+                            <ul class="dropdown-menu">
+                                {% recursetree categories %}
+                                    <li class="nav-item"><a class="nav-link" href="{{ node.get_absolute_url }}">{{ node.name }}</a></li>
+                                {% endrecursetree %}
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'home:home' %}">Ремонт техники</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Контакты</a></li>
+                    </ul>
+                    <ul class="nav-shop">
+                        <li class="nav-item"><button><i class="ti-search"></i></button></li>
+                        {% with total_items=cart|length %}
+                            <a href="{% url 'cart:cart_detail' %}">
+                                <li class="nav-item">
+                                    <button><i class="ti-shopping-cart"></i>
+                                        {% if cart|length > 0 %}
+                                            <span class="nav-shop__circle">{{ total_items }}</span>
+                                        {% else %}
+                                            <span class="nav-shop__circle">0</span>
+                                        {% endif %}
+                                    </button>
+                                </li>
+                            </a>
+                        {% endwith %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>

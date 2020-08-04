@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load mptt_tags %}
+{% block title %}{% if category %}{{ category.name }}{% else %}Каталог товаров{% endif %}{% endblock %}
+
+{% block content %}
+<!-- ================ Product list area ================= -->
+<section class="section-margin--small mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-5">
+                <aside class="left_widgets cat_widgets">
+                    <div class="l_w_title">
+                        <h3>Категории товаров</h3>
+                    </div>
+                    <div class="widgets_inner">
+                        <ul class="list">
+                            <li {% if not category %} class="selected" {% endif %}>
+                                <a href="{% url "products:product_list" %}">Все</a>
+                            </li>
+                            {% recursetree categories %}
+                                <li>
+                                    <a href="{{ node.get_absolute_url }}">{{ node.name }}</a>
+                                    {% if not node.is_leaf_node %}
+                                        <ul class="list">
+                                            <li>{{ children }}</li>
+                                        </ul>
+                                    {% endif %}
+                                </li>
+                            {% endrecursetree %}
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+            <div class="col-xl-9 col-lg-8 col-md-7">
+                <!-- Products by categories area -->
+                <section class="lattest-product-area pb-40 category-list">
+                    <div class="row">
+                        {% for p in products %}
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card text-center card-product">
+                                    <div class="card-product__img">
+                                        <a href="{{ p.get_absolute_url }}"><img class="card-img"
+                                             src="{% if p.image %}{{ p.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="card-body">
+{#                                        <p>{{ p.special_category }}</p>#}
+                                        <h4 class="card-product__title"><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></h4>
+                                        <p class="card-product__price">{{ p.price }} ₽</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </section>
+                {% include 'shop/pagination.html' with page=products %}
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ================ Recommended products area ================= -->
+<section class="section-margin calc-60px">
+    <div class="container">
+        <div class="section-intro pb-60px">
+            <p>Обновление ассортимента каждый день!</p>
+            <h2>Новые <span class="section-intro__style">поступления</span></h2>
+        </div>
+        <div class="owl-carousel owl-theme" id="newProductsCarousel">
+            {% for r in recommended_products %}
+                <div class="card text-center card-product">
+                    <div class="card-product__img">
+                        <img class="img-fluid"
+                             src="{% if r.image %}{{ r.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" alt="">
+                        <ul class="card-product__imgOverlay">
+                            <li><button><i class="ti-shopping-cart"></i></button></li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <p>{{ r.node }}</p>
+                        <h4 class="card-product__title"><a href="{{ r.get_absolute_url }}">{{ r.name|truncatechars:25 }}</a></h4>
+                        <p class="card-product__price">{{ r.price }} ₽</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

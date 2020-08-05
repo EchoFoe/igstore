@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% if category %}Ремонт {{ category.name }}{% else %}Ремонт смартфонов и устройств{% endif %}{% endblock %}
+
+{% block content %}
+<!-- ================ Product list area ================= -->
+<section class="section-margin--small mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-5">
+                <aside class="left_widgets cat_widgets">
+                    <div class="l_w_title">
+                        <h3>Устройства</h3>
+                    </div>
+                    <div class="widgets_inner">
+                        <ul class="list">
+                            <li {% if not category %} class="selected" {% endif %}>
+                                <a href="{% url "repairs:repair_list" %}">Все</a>
+                            </li>
+                            {% for c in categories %}
+                                <li {% if category.slug == c.slug %} class="selected" {% endif %}>
+                                    <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+            <div class="col-xl-9 col-lg-8 col-md-7">
+                <!-- Products by categories area -->
+                <section class="lattest-product-area pb-40 category-list">
+                    <div class="row">
+                        {% for r in repairs %}
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card text-center card-product">
+                                    <div class="card-product__img">
+                                        <a href="{{ r.get_absolute_url }}"><img class="card-img"
+                                             src="{% if r.image %}{{ r.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="card-product__title"><a href="{{ r.get_absolute_url }}">{{ r.name }}</a></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </section>
+                {% include 'repair/pagination.html' with page=repairs %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

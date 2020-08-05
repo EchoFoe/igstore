@@ -20,12 +20,12 @@
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                             aria-expanded="false">Магазин</a>
                             <ul class="dropdown-menu">
-                                {% recursetree categories %}
-                                    <li class="nav-item"><a class="nav-link" href="{{ node.get_absolute_url }}">{{ node.name }}</a></li>
-                                {% endrecursetree %}
+{#                                {% recursetree categories %}#}
+{#                                    <li class="nav-item"><a class="nav-link" href="{{ node.get_absolute_url }}">{{ node.name }}</a></li>#}
+{#                                {% endrecursetree %}#}
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'home:home' %}">Ремонт техники</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'repairs:repair_list' %}">Ремонт техники</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Контакты</a></li>
                     </ul>
                     <ul class="nav-shop">

@@ -7,6 +7,7 @@ urlpatterns = [
     path('grappelli/', include('grappelli.urls')),
     path('admin/', admin.site.urls),
     path('catalog/', include('products.urls', namespace='products')),
+    path('repair/', include('repairs.urls', namespace='repairs')),
     path('cart/', include('cart.urls', namespace='cart')),
     path('orders/', include('orders.urls', namespace='orders')),
     path('', include('home.urls', namespace='home')),

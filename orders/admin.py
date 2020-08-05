@@ -22,3 +22,4 @@ class OrderAdmin(admin.ModelAdmin):
     list_filter = ['paid', 'created', 'updated']
     readonly_fields = ['created', 'updated']
     inlines = [OrderItemInline]
+    date_hierarchy = 'created'

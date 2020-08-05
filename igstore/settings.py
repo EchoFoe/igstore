@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'reviews.apps.ReviewAppConfig',
     'orders.apps.OrdersConfig',
     'emails.apps.EmailsConfig',
+    'repairs.apps.RepairsConfig',
 ]
 
 MIDDLEWARE = [

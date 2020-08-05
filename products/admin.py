@@ -53,7 +53,7 @@ class ProductAdmin(admin.ModelAdmin):
                    'hot_sales', 'recommended', 'hot_deal', 'created', 'updated']
     readonly_fields = ['created', 'updated']
     prepopulated_fields = {'slug': ('name',), 'vendor_code': ('code',)}
-    # date_hierarchy = 'created'
+    date_hierarchy = 'created'
 
 
 # Таблица кастомизации деталей к продукции:

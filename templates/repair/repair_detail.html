@@ -3,5 +3,125 @@
 {% block title %}{{ product.name }}{% endblock %}
 
 {% block content %}
-fsafasfasfasfsa
+<!--================Product Description Area =================-->
+<section class="product_description_area">
+<div class="container">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link" id="home-tab" data-toggle="tab" href="#home"
+               role="tab" aria-controls="home" aria-selected="true">Описание модели устройства</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"
+               role="tab" aria-controls="profile"
+             aria-selected="false">Цены за улуги</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact"
+               role="tab" aria-controls="contact"
+             aria-selected="false">Информация</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" id="review-tab" data-toggle="tab" href="#review"
+               role="tab" aria-controls="review"
+             aria-selected="false">Заявка на ремонт</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <p>{{ repair.description }}</p>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="table-responsive">
+                <table class="table">
+                    <p class="text-center">Наши специалисты выполнят Вам ремонт устройства любой сложности! Мы готовы
+                        за минимальную сумму и время, восстановить ваш мартфон, ipad, maсbook на выезде, у Вас дома.
+                        Кроме того, ремонт устройства производится при Вас! Вы сможете задать интересующие вопросы
+                        мастеру, и проследить качество выполняемого ремонта. Цены установлены с учетом стоимости
+                        комплектующих деталей.</p>
+                    <tbody>
+                        {% for r in repair.repairdetail_set.all %}
+                            <tr>
+                                <td>
+                                    <h5>{{ r.name }}</h5>
+                                </td>
+                                <td>
+                                    <h5>{{ r.price }}</h5>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+            <p>Работаем быстро и аккуратно. Честная гарантия на все работы и комплектующие до 6 месяцев.</p>
+        </div>
+        <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="review_list">
+                        <div class="review_item">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h4>Где и как осуществляется ремонт?</h4>
+                                </div>
+                            </div>
+                            <p>Услуги по ремонту и обслуживанию Вашего устройства предоставляются специализированными
+                                работниками нашего сервисного центра. Технические специалисты предоставляют
+                                высококачественное обслуживание с использованием качественных запасных частей.</p>
+                        </div>
+                        <div class="review_item">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h4>Сколько времени это займет?</h4>
+                                </div>
+                            </div>
+                            <p>Наши специалисты предоставляют услуги на все виды ремонта электронных устройств.
+                                Большинство из них (например, ремонт экрана) осуществляются в день обращения.
+                                Если техническому специалисту необходимо больше времени, то ваше устройство остается у
+                                него и Вам сообщат, когда его можно будет забрать.</p>
+                        </div>
+                        <div class="review_item">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h4>Сколько это будет стоить?</h4>
+                                </div>
+                            </div>
+                            <p>Ориентировочно цены указаны во вкладке "цены за услуги". После осмотра вашего устройства
+                                технический специалист сообщит окончательную общую стоимость ремонта или
+                                замены (обычно, она не отличается то того, что написано). В некоторых случаях ремонт
+                                может покрываться гарантией, например магазином, в котором Вы приобретали устройство.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="review_box">
+                        <h4>Он-лайн заявка на ремонт</h4>
+                        <p>Здесь Вы можете оставить заявку на ремонт Вашего устройства. После её обработки специалист с
+                            Вами свяжется и уточнит детали.</p>
+        <form action="#/" class="form-contact form-review mt-3">
+          <div class="form-group">
+            <input class="form-control" name="name" type="text" placeholder="имя" required>
+          </div>
+          <div class="form-group">
+            <input class="form-control" name="email" type="email" placeholder="email" required>
+          </div>
+          <div class="form-group">
+            <input class="form-control" name="subject" type="text" placeholder="телефон">
+          </div>
+          <div class="form-group">
+            <textarea class="form-control different-control w-100" name="textarea" id="textarea" cols="30" rows="5" placeholder="Опишите проблему"></textarea>
+          </div>
+          <div class="form-group text-center text-md-right mt-3">
+            <button type="submit" class="button button--active button-review">Отправить</button>
+          </div>
+        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
 {% endblock %}

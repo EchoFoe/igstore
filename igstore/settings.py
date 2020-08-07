@@ -113,7 +113,7 @@ EMAIL_USE_TLS = True
 FROM_EMAIL = ""
 EMAIL_ADMIN = ""
 
-# try:
-#     from .settings_prod import *
-# except:
-#     pass
+try:
+    from .settings_prod import *
+except:
+    pass

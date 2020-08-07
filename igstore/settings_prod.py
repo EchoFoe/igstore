@@ -6,8 +6,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'db1',
-        'USER': 'neformat',
-        'PASSWORD': 'neformat',
+        'USER': 'igstore',
+        'PASSWORD': 'igstore',
         'HOST': 'localhost',
         'PORT': '',
 

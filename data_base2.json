@@ -2047,7 +2047,81 @@
         "updated": "2020-08-07T11:03:11.646Z"
     }
 },
-
+{
+    "model": "repairs.order",
+    "pk": 1,
+    "fields": {
+        "first_name": "\u041f\u0430\u0432\u0435\u043b",
+        "last_name": "\u042d\u0445\u043e",
+        "email": "aspirpd@gmail.com",
+        "phone": "+7(950) 879-08-81",
+        "address": "\u0423\u043b. \u0421\u0442\u0435\u043f\u0430\u043d\u0430 \u0420\u0430\u0437\u0438\u043d\u0430, \u0434. 130, \u043a\u0432. 44",
+        "status": false,
+        "description": "\u041d\u0435\u0434\u0435\u043b\u044e \u043d\u0430\u0437\u0430\u0434 \u043c\u043e\u0439 \u0442\u0435\u043b\u0435\u0444\u043e\u043d \u043f\u043e\u043f\u0430\u043b \u0432 \u0432\u043e\u0434\u0443. \u0422\u0435\u043f\u0435\u0440\u044c \u043d\u0435 \u0432\u043a\u043b\u044e\u0447\u0430\u0435\u0442\u0441\u044f.",
+        "created": "2020-08-07",
+        "updated": "2020-08-07"
+    }
+},
+{
+    "model": "repairs.order",
+    "pk": 2,
+    "fields": {
+        "first_name": "\u041f\u0430\u0432\u0435\u043b",
+        "last_name": "\u042d\u0445\u043e",
+        "email": "aspirpd@gmail.com",
+        "phone": "+7(950) 879-08-81",
+        "address": "",
+        "status": false,
+        "description": "\u042f \u0443\u043f\u0430\u043b",
+        "created": "2020-08-07",
+        "updated": "2020-08-07"
+    }
+},
+{
+    "model": "repairs.order",
+    "pk": 3,
+    "fields": {
+        "first_name": "\u041f\u0430\u0432\u0435\u043b",
+        "last_name": "\u042d\u0445\u043e",
+        "email": "aspirpd@gmail.com",
+        "phone": "+7(950) 879-08-81",
+        "address": "",
+        "status": false,
+        "description": "\u042f \u0443\u043f\u0430\u043b",
+        "created": "2020-08-07",
+        "updated": "2020-08-07"
+    }
+},
+{
+    "model": "repairs.order",
+    "pk": 4,
+    "fields": {
+        "first_name": "\u041f\u0430\u0432\u0435\u043b",
+        "last_name": "\u042d\u0445\u043e",
+        "email": "aspirpd@gmail.com",
+        "phone": "+7(950) 879-08-81",
+        "address": "",
+        "status": false,
+        "description": "\u042f \u0443\u043f\u0430\u043b",
+        "created": "2020-08-07",
+        "updated": "2020-08-07"
+    }
+},
+{
+    "model": "repairs.order",
+    "pk": 5,
+    "fields": {
+        "first_name": "\u041f\u0430\u0432\u0435\u043b",
+        "last_name": "\u042d\u0445\u043e",
+        "email": "aspirpd@gmail.com",
+        "phone": "+7(950) 879-08-81",
+        "address": "",
+        "status": false,
+        "description": "\u0415\u0449\u0435 \u0440\u0430\u0437 \u044f \u0443\u043f\u0430\u043b",
+        "created": "2020-08-07",
+        "updated": "2020-08-07"
+    }
+},
 {
     "model": "repairs.repaircategory",
     "pk": 1,

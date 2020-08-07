@@ -14,22 +14,21 @@
                 </button>
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-                        <li class="nav-item active"><a class="nav-link" href="{% url 'home:home' %}">Домашняя</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'home:home' %}">Домашняя</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'products:product_list' %}">Каталог</a></li>
                         <li class="nav-item submenu dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                             aria-expanded="false">Магазин</a>
                             <ul class="dropdown-menu">
-{#                                {% recursetree categories %}#}
-{#                                    <li class="nav-item"><a class="nav-link" href="{{ node.get_absolute_url }}">{{ node.name }}</a></li>#}
-{#                                {% endrecursetree %}#}
+                                {% recursetree categories %}
+                                    <li class="nav-item"><a class="nav-link" href="{{ node.get_absolute_url }}">{{ node.name }}</a></li>
+                                {% endrecursetree %}
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'repairs:repair_list' %}">Ремонт техники</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Контакты</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'contacts:contact' %}">Контакты</a></li>
                     </ul>
                     <ul class="nav-shop">
-                        <li class="nav-item"><button><i class="ti-search"></i></button></li>
                         {% with total_items=cart|length %}
                             <a href="{% url 'cart:cart_detail' %}">
                                 <li class="nav-item">

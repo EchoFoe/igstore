@@ -10,6 +10,7 @@ urlpatterns = [
     path('repair/', include('repairs.urls', namespace='repairs')),
     path('cart/', include('cart.urls', namespace='cart')),
     path('orders/', include('orders.urls', namespace='orders')),
+    path('contacts/', include('contacts.urls', namespace='contacts')),
     path('', include('home.urls', namespace='home')),
 ]\
               + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \

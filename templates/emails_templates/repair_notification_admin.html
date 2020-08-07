@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IGSTORE</title>
+</head>
+<body>
+    <h3>Здравствуйте!</h3>
+    <p>У нас новый заказ</p>
+
+{#    <ul>#}
+{#        {% for key, value in order_fields.items %}#}
+{#            <li><b>{{ key }}:</b>{{ value }}</li>#}
+{#        {% endfor %}#}
+{#    </ul>#}
+    <hr>
+    <ul>
+        <li>
+            <b>Имя клиента:</b> {{ order.first_name }}
+            <b>Фамилия клиента:</b> {{ order.last_name }}
+        </li>
+        <li>
+            <b>Е-мейл клиента:</b> {{ order.email }}
+        </li>
+        <li>
+            <b>Телефон клиента:</b> {{ order.phone }}
+        </li>
+        <li>
+            <b>Адрес клиента:</b> {{ order.address }}
+        </li>
+         <li>
+            <b>Детали заявки:</b> {{ order.description }}
+        </li>
+    </ul>
+</body>
+</html>

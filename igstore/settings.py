@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'orders.apps.OrdersConfig',
     'emails.apps.EmailsConfig',
     'repairs.apps.RepairsConfig',
+    'contacts.apps.ContactsConfig',
 ]
 
 MIDDLEWARE = [
@@ -105,9 +106,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "static", "media")
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = "neformatinc@gmail.com"
-EMAIL_HOST_PASSWORD = "rarara111"
+EMAIL_HOST_USER = ""
+EMAIL_HOST_PASSWORD = ""
 EMAIL_USE_TLS = True
 
-FROM_EMAIL = "neformatinc@gmail.com"
-EMAIL_ADMIN = "neformatinc@gmail.com"
+FROM_EMAIL = ""
+EMAIL_ADMIN = ""
+
+# try:
+#     from .settings_prod import *
+# except:
+#     pass

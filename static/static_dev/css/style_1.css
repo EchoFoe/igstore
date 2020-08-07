@@ -2642,8 +2642,8 @@ a {
 }
 
 .contact-info .media-body h3 {
-    font-size: 16px;
-    margin-bottom: 0;
+    font-size: 14px;
+    margin-bottom: 20px;
 }
 
 .contact-info .media-body h3 a {
@@ -3527,7 +3527,7 @@ a {
 }
 
 .billing_details .contact_form .form-group label span {
-    color: #ff0000;
+    color: #e30712;
 }
 
 .billing_details .contact_form .form-group textarea {
@@ -4866,6 +4866,7 @@ a {
     font-weight: normal;
     margin-bottom: 0px;
     white-space: nowrap;
+    font-weight: bold;
 }
 
 .product_description_area .tab-content .table tbody tr:first-child td {
@@ -4970,6 +4971,10 @@ a {
 
 .review_box .contact_form {
     margin-top: 15px;
+}
+
+.review_box .form-contact .form-group label span {
+    color: #e30712;
 }
 
 .review_box .primary-btn {

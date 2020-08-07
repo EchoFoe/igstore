@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Контакты и техподдержка{% endblock %}
+
+{% block content %}
+<section class="section-margin--small">
+    <div class="container">
+        <div class="row">
+            {% for c in contacts %}
+                <div class="col-md-4 col-lg-3 mb-4 mb-md-0">
+                    <div class="media contact-info">
+                        <span class="contact-info__icon"><i class="ti-home"></i></span>
+                        <div class="media-body">
+                            <h3>Российская Федерация</h3>
+                            <p>{{ c.address_1 }}</p>
+                            <p>{{ c.address_2 }}</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="media contact-info">
+                        <span class="contact-info__icon"><i class="ti-headphone"></i></span>
+                        <div class="media-body">
+                            <p>Для звонков:</p>
+                            <h3>{{ c.phone_1 }}</h3>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="media contact-info">
+                        <span class="contact-info__icon"><i class="fab fa-whatsapp"></i></span>
+                        <div class="media-body">
+                            <p>WhatsApp (сюда можно написать):</p>
+                            <h3>{{ c.phone_2 }}</h3>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="media contact-info">
+                        <span class="contact-info__icon"><i class="ti-email"></i></span>
+                        <div class="media-body">
+                            <h3>{{ c.email_1 }}</h3>
+                            <h3>{{ c.email_2 }}</h3>
+                            <p>Принимаем ваши отзывы и обращения круглосуточно!</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="col-md-8 col-lg-9">
+                <h5 class="text-center">Форма заявки для обращения в нашу техподдержку:</h5>
+                <br>
+                <form action="#" class="form-contact contact_form" method="post" id="contactForm">{% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                <input class="form-control" name="{{ form.first_name.name }}" id="name"
+                                       value="{{ request.POST.name }}"
+                                       required type="text" placeholder="Ваше имя">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" name="{{ form.last_name.name }}" id="name"
+                                       value="{{ request.POST.name }}"
+                                       required type="text" placeholder="Ваша фамилия">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" name="{{ form.email.name }}" id="email"
+                                       value="{{ request.POST.name }}"
+                                       required type="email" placeholder="Ваш email">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" name="{{ form.phone.name }}" id="order_phone"
+                                       value="{{ request.POST.name }}"
+                                       required type="text" placeholder="Номер телефона">
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="form-group">
+                                <textarea class="form-control different-control w-100" name="{{ form.description.name }}"
+                                          value="{{ request.POST.name }}"
+                                          id="message" cols="30" rows="5" placeholder="Текст сообщения"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group text-center text-md-right mt-3">
+                        <button type="submit" class="button button--active button-contactForm">Отправить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

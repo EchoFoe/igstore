@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Заказ успешно составлен! {% endblock title %}
+
+{% block content %}
+<!--================Repair created area =================-->
+<section class="order_details section-margin--small">
+    <div class="container">
+        <p class="text-center billing-alert">Отлично! Ваша заявка успешно составлена и она обрабатывается нашим
+            специалистом. Номер Вашей заявки <strong>{{ order.id }}</strong></p>
+        <p class="text-center billing-alert">Скоро с Вами свяжется наш оператор</p>
+    </div>
+</section>
+{% endblock %}

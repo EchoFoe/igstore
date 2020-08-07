@@ -45,3 +45,41 @@ class SendingEmail(object):
         if order:
             kwargs["order"] = order
         EmailSendingFact.objects.create(**kwargs)
+
+
+class SendingRepairEmail(object):
+    from_email = "Магазин IGSTORE <%s>" % FROM_EMAIL
+    reply_to_emails = [from_email]
+    target_emails = []
+    bcc_emails = []
+
+    def sending_email(self, type_id, email=None, order=None):
+        global subject, message
+        if not email:
+            email = EMAIL_ADMIN
+
+        target_emails = [email]
+
+        vars = dict()
+        if type_id == 1:
+            subject = "Новый заказ"
+            vars["order_fields"] = model_to_dict(order)
+            vars["order"] = order
+            subject = 'Клиент заказал ремонт устройства!'
+            message = get_template('emails_templates/repair_notification_admin.html').render(vars)
+
+        elif type_id == 2:
+            vars["order"] = order
+            subject = 'Ваша заявка в магазине "IGSTORE" получена! Скоро с Вами свяжется наш специалист.'
+            message = get_template('emails_templates/repair_notification_customer.html').render(vars)
+
+        msg = EmailMessage(subject, message, from_email=self.from_email, to=target_emails, bcc=self.bcc_emails,
+                           reply_to=self.reply_to_emails)
+        msg.content_subtype = 'html'
+        msg.mixed_subtype = 'related'
+        msg.send()
+
+        kwargs = {
+            "type_id": type_id,
+            "email": email
+        }

@@ -19,10 +19,10 @@
                     <div class="single-footer-widget tp_widgets">
                         <h4 class="footer_title">Полезные ссылки</h4>
                         <ul class="list">
-                            <li><a href="#">Услуги ремонта</a></li>
-{#                            {% recursetree categories %}#}
-{#                                <li><a href="{{ node.get_absolute_url }}">{{ node.name }}</a></li>#}
-{#                            {% endrecursetree %}#}
+                            {% recursetree categories %}
+                                <li><a href="{{ node.get_absolute_url }}">{{ node.name }}</a></li>
+                            {% endrecursetree %}
+                            <li><a href="{% url 'repairs:repair_list' %}">Услуги ремонта</a></li>
                         </ul>
                     </div>
                 </div>
@@ -31,11 +31,13 @@
                         <h4 class="footer_title">Контакты: </h4>
                         <div class="ml-40">
                             <p class="sm-head"><span class="fa fa-location-arrow"></span>Главный офис:</p>
-                            <p>РФ, г. Москва, Багратионовский проезд, дом 7, корпус 3</p>
-                            <p class="sm-head"><span class="fa fa-phone"></span>Телефоны:</p>
-                            <p>8 (968)-414-44-00 <br>8 (934)-444-43-34</p>
+                            <p>РФ, г. Москва, Багратионовский проезд, 7, корпус 3, сектор b1, 053 павильон</p>
+                            <p class="sm-head"><span class="fab fa-whatsapp"></span>WhatsApp (сюда Вы можете написать):</p>
+                            <p>+7-(926)-004-07-28</p>
+                            <p class="sm-head"><span class="fa fa-phone"></span>Телефон (сюда Вы можете позвонить):</p>
+                            <p>+7-(495)-294-24-43</p>
                             <p class="sm-head"><span class="fa fa-envelope"></span>Почта:</p>
-                            <p>neformatinc@gmail.com <br>neformat_inc@mail.ru</p>
+                            <p>igadgetstore.help@gmail.com <br>neformatinc@gmail.com</p>
                             <p class="sm-head"><a href="https://www.instagram.com/igstore.ru/" target="_blank">
                                 <span class="fab fa-instagram" ></span>Магазин в Instagram</a></p>
                             <br>

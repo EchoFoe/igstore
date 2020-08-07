@@ -55,7 +55,7 @@
             </div>
         </div>
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-            <p>Работаем быстро и аккуратно. Честная гарантия на все работы и комплектующие до 6 месяцев.</p>
+            <p>{{ repair.info }}</p>
         </div>
         <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
             <div class="row">
@@ -100,23 +100,47 @@
                         <h4>Он-лайн заявка на ремонт</h4>
                         <p>Здесь Вы можете оставить заявку на ремонт Вашего устройства. После её обработки специалист с
                             Вами свяжется и уточнит детали.</p>
-        <form action="#/" class="form-contact form-review mt-3">
-          <div class="form-group">
-            <input class="form-control" name="name" type="text" placeholder="имя" required>
-          </div>
-          <div class="form-group">
-            <input class="form-control" name="email" type="email" placeholder="email" required>
-          </div>
-          <div class="form-group">
-            <input class="form-control" name="subject" type="text" placeholder="телефон">
-          </div>
-          <div class="form-group">
-            <textarea class="form-control different-control w-100" name="textarea" id="textarea" cols="30" rows="5" placeholder="Опишите проблему"></textarea>
-          </div>
-          <div class="form-group text-center text-md-right mt-3">
-            <button type="submit" class="button button--active button-review">Отправить</button>
-          </div>
-        </form>
+                        <form action="." class="form-contact form-review mt-3" method="post">{% csrf_token %}
+                            <div class="form-group p_star">
+                                <label for="first_name">Ваше имя <span>*</span></label>
+                                <input required type="text" class="form-control" id="first"
+                                       name="{{ form.first_name.name }}" value="{{ request.POST.name }}"
+                                       placeholder="Иван">
+                            </div>
+                            <div class="form-group p_star">
+                                <label for="last_name">Ваша фамилия <span>*</span></label>
+                                <input required type="text" class="form-control" id="last_name"
+                                       name="{{ form.last_name.name }}" value="{{ request.POST.name }}"
+                                       placeholder="Иванов">
+                            </div>
+                            <div class="form-group p_star">
+                                <label for="order_phone">Ваш номер тел. <span>*</span></label>
+                                <input required type="text" class="form-control" id="order_phone"
+                                       name="{{ form.phone.name }}" value="{{ request.POST.name }}">
+                            </div>
+                            <div class="form-group p_star">
+                                <label for="email">Ваша почта <span>*</span></label>
+                                <input required type="email" class="form-control" id="email"
+                                       name="{{ form.email.name }}" value="{{ request.POST.name }}"
+                                       placeholder="name@example.com">
+                            </div>
+                            <div class="form-group p_star">
+                                <label for="first_name">Адрес</label>
+                                <input type="text" class="form-control" id="address"
+                                       name="{{ form.address.name }}" value="{{ request.POST.name }}"
+                                       placeholder="Ул. Степана Разина, д. 24, кв. 179">
+                            </div>
+                            <div class="form-group p_star">
+                                <label for="email">Ваша проблема <span>*</span></label>
+                                <textarea required type="text" class="form-control different-control w-100"
+                                          name="{{ form.description.name }}" value="{{ request.POST.name }}"
+                                          id="textarea" cols="30" rows="5"
+                                          placeholder="Пожалуйста, опишите Вашу проблему"></textarea>
+                            </div>
+                            <div class="form-group text-center text-md-right mt-3">
+                                <button type="submit" class="button button--active button-review">Отправить</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

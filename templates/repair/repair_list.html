@@ -14,11 +14,11 @@
                     </div>
                     <div class="widgets_inner">
                         <ul class="list">
-                            <li {% if not category %} class="selected" {% endif %}>
+                            <li {% if not r_category %} class="selected" {% endif %}>
                                 <a href="{% url "repairs:repair_list" %}">Все</a>
                             </li>
-                            {% for c in categories %}
-                                <li {% if category.slug == c.slug %} class="selected" {% endif %}>
+                            {% for c in r_categories %}
+                                <li {% if r_category.slug == c.slug %} class="selected" {% endif %}>
                                     <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
                                 </li>
                             {% endfor %}

@@ -14,7 +14,7 @@ class OrderItemInline(admin.TabularInline):
 class OrderAdmin(admin.ModelAdmin):
     save_as = True
     fields = [('first_name', 'last_name'), ('email', 'phone'), 'address',
-                    ('postal_code', 'city'), 'paid', 'description', 'created', 'updated']
+              ('postal_code', 'city'), 'paid', 'description', 'created', 'updated']
     list_display = ['id', 'first_name', 'last_name', 'email', 'phone', 'address',
                     'postal_code', 'city', 'paid', 'created', 'updated']
     search_fields = ['id', 'first_name', 'last_name']

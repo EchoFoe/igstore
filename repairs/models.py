@@ -5,6 +5,30 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.urls import reverse
 
 
+# Модель для сведений об покупаемых товарах:
+class Order(models.Model):
+    first_name = models.CharField(max_length=50, verbose_name='Имя клиента')
+    last_name = models.CharField(max_length=50, verbose_name='Фамилия клиента')
+    email = models.EmailField(max_length=50, verbose_name='Е-мейл клиента')
+    phone = models.CharField(max_length=50, default=None, verbose_name='Номер телефона клиента')
+    address = models.CharField(max_length=256, blank=True, verbose_name='Адрес клиента')
+    status = models.BooleanField(default=False, verbose_name='Проблема решена?')
+    description = models.TextField(max_length=256, blank=True, verbose_name='Описание проблемы клиента')
+    created = models.DateField(blank=True, null=True, default=timezone.now, verbose_name='Дата создания записи')
+    updated = models.DateField(blank=True, null=True, default=timezone.now, verbose_name='Дата ред-ия записи')
+
+    class Meta:
+        ordering = ['-created']
+        verbose_name = 'Заявка на ремонт'
+        verbose_name_plural = 'Заявки на ремонт'
+
+    def save(self, *args, **kwargs):
+        super(Order, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return 'Заявка на ремонт № {}'.format(self.id)
+
+
 # Категории устройств для услуг по ремонту:
 class RepairCategory(models.Model):
     name = models.CharField(max_length=512, db_index=True, verbose_name='Подкатегория товара')
@@ -32,6 +56,7 @@ class Repair(models.Model):
                             help_text='Полная марка устройства')
     slug = models.SlugField(max_length=200, db_index=True, verbose_name='Уникальная строка')
     description = models.TextField(max_length=10000, blank=True, verbose_name='Описание')
+    info = models.TextField(max_length=10000, blank=True, verbose_name='Информация/гарантии')
     image = models.ImageField(upload_to='repair_covers/%Y/%m/%d', blank=True, verbose_name='Обложка устройства')
     is_active = models.BooleanField(default=True, verbose_name='Активность')
     created = models.DateField(blank=True, null=True, default=timezone.now, verbose_name='Дата создания записи')

@@ -9,7 +9,7 @@ $(function() {
         return false;
     });
     //------- Preloader -------//
-    $(window).on('load', function () {
+    $(function(){
         $('#preloader-active').delay(450).fadeOut('slow');
         $('body').delay(550).css({
             'overflow': 'visible',

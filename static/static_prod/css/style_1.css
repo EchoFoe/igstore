@@ -748,6 +748,9 @@ a {
 
 .hero-banner::before {
     background: #384aeb;
+    background: linear-gradient(217deg, rgb(56 74 235), rgba(255,0,0,0) 70.71%),
+                linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+                linear-gradient(336deg, rgb(56 74 235), rgba(0,0,255,0) 70.71%);
     content: "";
     display: block;
     height: 100%;
@@ -987,7 +990,7 @@ a {
 }
 
 .offer {
-    background: url("../img/home/parallax-bg.png") right center no-repeat;
+    background: url("../img/banner_iphone3.jpg") right center no-repeat;
     background-size: cover;
     box-shadow: 0px 10px 10px 0px rgba(56, 74, 235, 0.4);
 }

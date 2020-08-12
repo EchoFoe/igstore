@@ -43,7 +43,6 @@ class ProductAdmin(admin.ModelAdmin):
     fields = ['category', ('name', 'slug'), ('code', 'vendor_code'), 'memory',
               'status', ('hot_deal', 'as_new', 'recommended', 'hot_sales'), ('price', 'discount'),
               'image', 'description', 'available', 'is_active', ('created', 'updated')]
-    prepopulated_fields = {'slug': ('name',), 'vendor_code': ('code',)}
     # summernote_fields = ('description',)
     filter_horizontal = ['category']
     list_display = ['name', 'code', 'price', 'available',
@@ -55,6 +54,7 @@ class ProductAdmin(admin.ModelAdmin):
                    'hot_sales', 'recommended', 'hot_deal', 'created', 'updated']
     readonly_fields = ['created', 'updated']
     date_hierarchy = 'created'
+    prepopulated_fields = {'slug': ('name',), 'vendor_code': ('code',)}
 
 
 # Таблица кастомизации деталей к продукции:

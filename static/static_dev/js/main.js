@@ -1,18 +1,19 @@
 $(function() {
     "use strict";
-    //------- Preloader -------//
-    $(window).on('load', function () {
-        $('#preloader-active').delay(450).fadeOut('slow');
-        $('body').delay(550).css({
-            'overflow': 'visible',
-        });
-    });
+
     //------- Dropdown menu list -------//
     var dropToggle = $('.widgets_inner .list li').has('ul').children('a');
     dropToggle.on('click', function() {
         dropToggle.not(this).closest('li').find('ul').slideUp(200);
         $(this).closest('li').children('ul').slideToggle(200);
         return false;
+    });
+    //------- Preloader -------//
+    $(window).on('load', function () {
+        $('#preloader-active').delay(450).fadeOut('slow');
+        $('body').delay(550).css({
+            'overflow': 'visible',
+        });
     });
     //------- Parallax -------//
     skrollr.init({

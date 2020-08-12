@@ -14,9 +14,10 @@ class ProductDetailInline(admin.TabularInline):
 admin.site.register(ProductCategory, mptt.admin.DraggableMPTTAdmin,
                     list_display=('tree_actions', 'indented_title', 'name', 'parent', 'available', 'is_active'),
                     list_display_links=('indented_title',),
+                    prepopulated_fields={'slug': ('name', )},
                     list_filter=(('parent', mptt.admin.TreeRelatedFieldListFilter),),
                     list_editable=('available', 'is_active'),
-                    prepopulated_fields={'slug': ('name', )},
+                    # prepopulated_fields={'slug': ('name', )},
                     readonly_field=('created', 'updated'),
                     )
 
@@ -42,6 +43,7 @@ class ProductAdmin(admin.ModelAdmin):
     fields = ['category', ('name', 'slug'), ('code', 'vendor_code'), 'memory',
               'status', ('hot_deal', 'as_new', 'recommended', 'hot_sales'), ('price', 'discount'),
               'image', 'description', 'available', 'is_active', ('created', 'updated')]
+    prepopulated_fields = {'slug': ('name',), 'vendor_code': ('code',)}
     # summernote_fields = ('description',)
     filter_horizontal = ['category']
     list_display = ['name', 'code', 'price', 'available',
@@ -52,7 +54,6 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ['category', 'available', 'memory', 'is_active', 'as_new',
                    'hot_sales', 'recommended', 'hot_deal', 'created', 'updated']
     readonly_fields = ['created', 'updated']
-    prepopulated_fields = {'slug': ('name',), 'vendor_code': ('code',)}
     date_hierarchy = 'created'
 
 

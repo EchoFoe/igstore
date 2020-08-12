@@ -59,7 +59,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 # Таблица кастомизации деталей к продукции:
 @admin.register(ProductDetail)
-class PromotionDetailsAdmin(admin.ModelAdmin):
+class ProductDetailsAdmin(admin.ModelAdmin):
     save_as = True
     fields = ['product', 'image', ('is_main', 'is_not_main'), ('created', 'updated')]
     list_display = ['product', 'is_main', 'is_not_main']

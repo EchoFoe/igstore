@@ -25,7 +25,7 @@ def category_footer(request):
 # Обработчик страницы товаров с фильтрацией по категориям
 def product_list(request, category_slug=None):
     category = None
-    categories = ProductCategory.objects.all()
+    categories = ProductCategory.objects.filter(available=True, is_active=True)
     object_list = Product.objects.filter(available=True, is_active=True)
     recommended_products = Product.objects.filter(available=True, is_active=True, recommended=True)[0:32]
     if category_slug:

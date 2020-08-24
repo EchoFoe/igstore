@@ -76,7 +76,7 @@ class Product(models.Model):
     updated = models.DateField(blank=True, null=True, default=timezone.now, verbose_name='Дата ред-ия записи')
 
     class Meta:
-        ordering = ('-created', 'name')
+        ordering = ('-created', 'name', '-memory')
         index_together = (('id', 'slug'),)
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'

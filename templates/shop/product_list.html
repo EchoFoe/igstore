@@ -71,10 +71,10 @@
             {% for r in recommended_products %}
                 <div class="card text-center card-product">
                     <div class="card-product__img">
-                        <img class="img-fluid"
-                             src="{% if r.image %}{{ r.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" alt="">
+                        <a href="{{ r.get_absolute_url }}"><img class="img-fluid"
+                             src="{% if r.image %}{{ r.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" alt=""></a>
                         <ul class="card-product__imgOverlay">
-                            <li><button><i class="ti-shopping-cart"></i></button></li>
+{#                            <li><button><a href="{{ r.get_absolute_url }}"><i class="ti-shopping-cart"></i></a></button></li>#}
                         </ul>
                     </div>
                     <div class="card-body">
